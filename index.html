@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3b0c32">
+<title>Yasmin's Birthday Surprise 💗</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;overflow-x:hidden;padding:20px;
+ display:flex;align-items:center;justify-content:center;
+ color:white;text-align:center;font-family:Arial,sans-serif;
+ background:
+ radial-gradient(ellipse at 12% 12%,#ff3fa477,transparent 35%),
+ radial-gradient(ellipse at 90% 15%,#a855f777,transparent 35%),
+ radial-gradient(ellipse at 50% 100%,#ff78bd55,transparent 45%),
+ linear-gradient(140deg,#1b061c,#4b0b43 48%,#210725);
+}
+#scene{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.heart{
+ position:absolute;bottom:-60px;color:#ffb8df;
+ text-shadow:0 0 18px #ff3fa4;
+ animation:rise linear infinite;opacity:0
+}
+@keyframes rise{
+ 0%{transform:translateY(0) rotate(-12deg) scale(.7);opacity:0}
+ 12%{opacity:.6}
+ 100%{transform:translateY(-115vh) rotate(25deg) scale(1.3);opacity:0}
+}
+.glow{
+ position:fixed;width:260px;height:260px;border-radius:50%;
+ filter:blur(65px);opacity:.3;pointer-events:none;
+ animation:drift 9s ease-in-out infinite alternate
+}
+.glow.a{background:#ff3fa4;top:-100px;left:-90px}
+.glow.b{background:#c084fc;right:-90px;bottom:-100px}
+@keyframes drift{to{transform:translate(50px,40px) scale(1.2)}}
+.card{
+ position:relative;isolation:isolate;overflow:hidden;
+ width:100%;max-width:700px;padding:clamp(25px,6vw,48px);
+ border-radius:30px;border:1px solid #ffd7ef66;
+ background:linear-gradient(145deg,#ffffff20,#ffffff08);
+ box-shadow:0 25px 90px #10001099,0 0 42px #ff3fa433;
+ backdrop-filter:blur(17px)
+}
+.card:before{
+ content:"";position:absolute;inset:-2px;z-index:-1;
+ background:conic-gradient(from 0deg,transparent,#ff78bd,transparent,#e879f9,transparent);
+ animation:spin 12s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hidden{display:none!important}
+.eyebrow,.step-label{
+ letter-spacing:.2em;text-transform:uppercase;
+ font-size:.76rem;font-weight:bold;color:#ffd7ef
+}
+h1{
+ font-size:clamp(2.3rem,9vw,4.6rem);line-height:1.05;
+ background:linear-gradient(90deg,#fff,#ffc1e3,#ff72bd,#fff);
+ background-size:220%;color:transparent;
+ background-clip:text;-webkit-background-clip:text;
+ animation:shine 5s linear infinite
+}
+@keyframes shine{to{background-position:220% center}}
+h2{
+ font-size:clamp(1.7rem,6vw,2.7rem);
+ color:#ffe0f1;text-shadow:0 0 22px #ff78bd55
+}
+p{color:#fff0f8;line-height:1.8;font-size:1.04rem}
+.small{font-size:.85rem;color:#ffd1e9}
+input{
+ width:100%;max-width:340px;padding:15px;
+ border-radius:14px;border:1px solid #ff9ed3;
+ background:#300b2d;color:white;font-size:17px;
+ text-align:center;margin:12px 0
+}
+button{
+ border:0;border-radius:999px;padding:14px 23px;margin:7px;
+ color:#4a1036;background:linear-gradient(100deg,#ffe1f1,#ff8ac8,#ffd4eb);
+ font-weight:bold;font-size:16px;cursor:pointer;
+ box-shadow:0 8px 28px #ff3fa444;transition:.2s
+}
+button:hover{transform:translateY(-3px) scale(1.02)}
+.secondary{background:#ffffff18;color:white;border:1px solid #ffd7ef55}
+.error{min-height:24px;color:#ffc0d8}
+.progress{height:7px;border-radius:99px;background:#ffffff20;margin:20px 0 10px}
+#bar{
+ height:100%;width:12.5%;border-radius:99px;
+ background:linear-gradient(90deg,#ff3fa4,#ffc2e2,#e879f9);
+ box-shadow:0 0 15px #ff78bd;transition:width .5s
+}
+.icon3d{
+ font-size:clamp(4.2rem,18vw,7.2rem);display:inline-block;
+ filter:drop-shadow(0 15px 18px #1b001c88);
+ animation:bob 3s ease-in-out infinite
+}
+@keyframes bob{
+ 0%,100%{transform:translateY(0) rotateY(-13deg) rotateZ(-2deg)}
+ 50%{transform:translateY(-13px) rotateY(13deg) rotateZ(2deg)}
+}
+.wish{min-height:145px;display:flex;flex-direction:column;justify-content:center}
+.final-title{font-size:clamp(2.4rem,10vw,5rem)}
+.confetti{
+ position:fixed;top:-30px;z-index:5;pointer-events:none;
+ animation:fall linear forwards
+}
+@keyframes fall{
+ to{transform:translate3d(var(--dx),110vh,0) rotate(760deg);opacity:.1}
+}
+footer{color:#ffd7ef99;font-size:12px;margin-top:16px}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+</style>
+</head>
+
+<body>
+<div id="scene"></div>
+<div class="glow a"></div>
+<div class="glow b"></div>
+
+<main style="width:100%;max-width:700px;position:relative;z-index:1">
+
+<section class="card" id="login">
+ <div class="eyebrow">A Little Birthday Magic 💗</div>
+ <div class="icon3d">💝</div>
+ <h1>A Special Surprise<br>Awaits You</h1>
+ <p>A sparkling journey of sweet wishes, happy moments, and beautiful surprises is waiting just for you.</p>
+ <p class="small">Enter the secret password to begin ✨</p>
+ <form id="passwordForm">
+  <input id="password" type="password" placeholder="Enter Password" autocomplete="off" required>
+  <br>
+  <button type="submit">Unlock the Magic 💖</button>
+  <div class="error" id="error"></div>
+ </form>
+ <div class="small">Password Hint: Yasmin</div>
+</section>
+
+<section class="card hidden" id="journey" aria-live="polite">
+ <div class="eyebrow">Your Magical Birthday Journey</div>
+ <div class="progress"><div id="bar"></div></div>
+ <div class="step-label" id="stepLabel">STEP 1 OF 8</div>
+ <div class="icon3d" id="emoji">🌟</div>
+ <div class="wish">
+  <h2 id="title"></h2>
+  <p id="message"></p>
+ </div>
+ <button id="next">Next Surprise →</button>
+ <button class="secondary hidden" id="restart">Start Again ↻</button>
+</section>
+
+<footer>Made with sparkle, sweetness & birthday wishes 💗</footer>
+</main>
+
+<script>
+/* FLOATING PINK HEARTS */
+const scene=document.getElementById("scene");
+const heartSymbols=["♡","♥","ღ","💕","✧","💗"];
+
+for(let i=0;i<38;i++){
+ const h=document.createElement("span");
+ h.className="heart";
+ h.textContent=heartSymbols[Math.floor(Math.random()*heartSymbols.length)];
+ h.style.left=Math.random()*100+"%";
+ h.style.fontSize=(14+Math.random()*26)+"px";
+ h.style.animationDuration=(9+Math.random()*13)+"s";
+ h.style.animationDelay=(-Math.random()*18)+"s";
+ scene.appendChild(h);
+}
+
+/* ALL 8 SURPRISE STEPS */
+const surprises=[
+ {
+  emoji:"🌟",
+  title:"A Day Made to Shine",
+  message:"May your birthday sparkle with happiness, beautiful moments, and memories that make you smile long after today."
+ },
+ {
+  emoji:"🎂",
+  title:"A Beautiful Birthday Wish",
+  message:"May every candle bring a fresh reason to smile, and may your special day be filled with laughter, warmth, and wonderful surprises."
+ },
+ {
+  emoji:"🦋",
+  title:"Dream Big, Shine Bright",
+  message:"May you always have the courage to follow your dreams, the confidence to believe in yourself, and the strength to achieve wonderful things."
+ },
+ {
+  emoji:"🎁",
+  title:"A Box Full of Happiness",
+  message:"May life surprise you with unexpected blessings, exciting opportunities, kind moments, and countless little reasons to celebrate."
+ },
+ {
+  emoji:"🌈",
+  title:"A Colourful New Chapter",
+  message:"May the year ahead bring vibrant adventures, peaceful days, bright beginnings, and beautiful memories you will treasure forever."
+ },
+ {
+  emoji:"💎",
+  title:"Simply Extraordinary",
+  message:"Never stop being your wonderful self. Keep smiling, keep growing, and let your unique sparkle brighten every place you go."
+ },
+ {
+  emoji:"⏳",
+  title:"WAIT… WAIT… THIS IS NOT THE LAST SURPRISE! 💗",
+  message:"Wait, wait… don't go anywhere! 😍 You haven't reached the grand finale yet! The biggest birthday wish is still waiting just one step away. Get ready, take a deep breath, and tap below for the final surprise! 🎁✨"
+ },
+ {
+  emoji:"🎉",
+  title:"HAPPY BIRTHDAY JII",
+  message:"Wishing you endless happiness, good health, great success, and a year filled with magical memories. May your beautiful dreams come true and every new day bring a reason to smile. Keep shining, keep smiling, and have the most amazing birthday ever! 🎂💗✨"
+ }
+];
+
+let current=0;
+
+document.getElementById("passwordForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ const entered=document.getElementById("password").value.trim();
+
+ if(entered.toLowerCase()==="yasmin"){
+  document.getElementById("error").textContent="";
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("journey").classList.remove("hidden");
+  current=0;
+  renderStep();
+ }else{
+  document.getElementById("error").textContent="Incorrect password. Try again 💗";
+ }
+});
+
+function renderStep(){
+ const w=surprises[current];
+ const last=current===7;
+
+ document.getElementById("stepLabel").textContent=
+  "STEP "+(current+1)+" OF 8";
+ document.getElementById("bar").style.width=
+  ((current+1)/8*100)+"%";
+ document.getElementById("emoji").textContent=w.emoji;
+ document.getElementById("title").textContent=w.title;
+ document.getElementById("title").classList.toggle("final-title",last);
+ document.getElementById("message").textContent=w.message;
+
+ document.getElementById("next").classList.toggle("hidden",last);
+ document.getElementById("restart").classList.toggle("hidden",!last);
+
+ if(last)celebrate();
+}
+
+document.getElementById("next").addEventListener("click",function(){
+ if(current<7){
+  current++;
+  renderStep();
+ }
+});
+
+document.getElementById("restart").addEventListener("click",function(){
+ current=0;
+ renderStep();
+});
+
+/* GRAND FINALE CELEBRATION */
+function celebrate(){
+ const symbols=["✦","✧","💗","💕","✨","🎉","🎊"];
+ for(let i=0;i<70;i++){
+  const c=document.createElement("span");
+  c.className="confetti";
+  c.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  c.style.left=Math.random()*100+"vw";
+  c.style.setProperty("--dx",(Math.random()*220-110)+"px");
+  c.style.animationDuration=(3+Math.random()*4)+"s";
+  c.style.fontSize=(12+Math.random()*22)+"px";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),7500);
+ }
+}
+</script>
+</body>
+  </html>
